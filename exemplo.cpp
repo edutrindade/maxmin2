@@ -10,7 +10,7 @@ using namespace chrono;
 
 HANDLE colors = GetStdHandle(STD_OUTPUT_HANDLE);
 
-#define SIZE 5
+#define SIZE 5000
 
 void PrintMenu();
 void PrintInfo();
@@ -18,7 +18,6 @@ void DrawValuesVector(int v[], int size);
 void GenerateSortedVector(int v[], int size);
 void GenerateInverseVector(int v[], int size);
 int MaxMin2(int vetor[], int size, int &max, int &min);
-void PrintResult(int v[], int size, int &max, int &min, string type, duration<double> time, int comparisions, int highestIndex, int lowestIndex);
 
 int main()
 {
@@ -119,7 +118,7 @@ void DrawValuesVector(int v[], int size)
     SetConsoleTextAttribute(colors, 7);
     for (int i = 0; i < size; i++)
     {
-        int n = rand() % 100;
+        int n = rand() % 10000;
         v[i] = n;
         cout << "[" << n << "] ";
     }
@@ -144,10 +143,12 @@ int MaxMin2(int v[], int size, int &max, int &min)
                  << " => "
                  << "[" << v[i] << "] ";
             maxIndex = i;
+            continue;
         }
+        
+        comparisions++;
         if (v[i] < v[minIndex])
         {
-            comparisions++;
             exchanges++;
             cout << "\nTroca de índice " << exchanges << " para encontrar o Min: ";
             cout << "[" << v[minIndex] << "] "
